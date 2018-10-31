@@ -15,6 +15,7 @@ import HeaderToolkit from '../../components/UI/HeaderToolkit';
 import PhysicalRow from "../../components/Toolkits/Physical/PhysicalRow";
 import PhysicalDetail from "../../components/Toolkits/Physical/PhysicalDetail";
 import SubHeadingText from '../../components/UI/SubHeadingText';
+import Message from "../../components/UI/Message";
 import jsonData from '../../assets/json/physicalToolkit.json'; //json used for first time toolkit.
 import ajax from '../../ajax/ajax';
 
@@ -37,33 +38,41 @@ class PhysicalToolkit extends Component {
       //get the id from logged user
       const userData = await AsyncStorage.getItem('user');
       this.setState({ user: JSON.parse(userData) });
-      try {
-          const data = await ajax.getToolkit(this.state.user.id, 'physical');
-          const dataValue = data.value;
-          var dataToolkit = [];
-          if (dataValue === null) {//if toolkit is new (no data from fetch)
-             dataToolkit = jsonData; //assign "empty" json to data for toolkit
-          } else {
-            dataToolkit = dataValue; //assign existing data from toolkit
-          }
-          this.setState({ 
+      if (this.state.user === null) {
+        this.setState({ 
             isLoading: false, 
-            data: dataToolkit,
-          });
-      } catch(error) {
-        console.log(error);
+            data: jsonData,
+        });
+      } else {  
+            try {
+                const data = await ajax.getToolkit(this.state.user.id, 'physical');
+                const dataValue = data.value;
+                var dataToolkit = [];
+                if (dataValue === null) {//if toolkit is new (no data from fetch)
+                    dataToolkit = jsonData; //assign "empty" json to data for toolkit
+                } else {
+                    dataToolkit = dataValue; //assign existing data from toolkit
+                }
+                this.setState({ 
+                    isLoading: false, 
+                    data: dataToolkit,
+                });
+            } catch(error) {
+                console.log(error);
+            }
       }
-    
     }
 
     //function to navigate to the detail information
     setCurrentItem = (item, keyId) => {
-        this.setState({
-          currentItem: {
-            activity: item.activity,  
-          },
-          keyId: keyId
-        });
+        if (this.state.user !== null) {
+                this.setState({
+                currentItem: {
+                    activity: item.activity,  
+                },
+                keyId: keyId
+                });
+        }
     }
 
     //function that comes from child component ToolkitItemDetail, to list all items
@@ -128,7 +137,9 @@ class PhysicalToolkit extends Component {
                         instructions="Press a box to enter or change information."
                         style={{fontSize: wp('4.3%')}}
                 />
-
+                    {this.state.user === null &&   
+                        <Message />
+                    }
                   <View style={[styles.containerGrid,{backgroundColor: background}]}> 
                       <View style={[styles.cell, {backgroundColor: 'white'}]}>
                           <Text style={styles.titleMed}>Monday</Text>

@@ -1,8 +1,9 @@
+
 import { Navigation } from 'react-native-navigation';
-import { Platform } from 'react-native';
+import { Platform, AsyncStorage } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const startTabs = () => {
+const startTabs = () => {  
     
     Promise.all([
         Icon.getImageSource(Platform.OS === 'android' ? "md-home" : "ios-home", 20),  //home icon

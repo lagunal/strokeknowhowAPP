@@ -19,7 +19,7 @@ import ToolkitContactInfo from "../../components/Toolkits/Emergency/ToolkitConta
 import ToolkitItemDetail from "../../components/Toolkits/Emergency/ToolkitItemDetail"
 import ToolkitSingleItem from "../../components/Toolkits/Emergency/ToolkitSingleItem"
 import SubHeadingText from '../../components/UI/SubHeadingText';
-
+import Message from "../../components/UI/Message";
 import jsonData from '../../assets/json/emergencyToolkit.json'; //json used for first time toolkit.
 import ajax from '../../ajax/ajax';
 
@@ -44,29 +44,36 @@ class EmergencyToolkit extends Component {
       const userData = await AsyncStorage.getItem('user');
 
       this.setState({ user: JSON.parse(userData) });
-      try {
-          const data = await ajax.getToolkit(this.state.user.id, 'emergency');
-   
-          const dataValue = data.value;
-          var dataToolkit = [];
-          if (dataValue === null) {//if toolkit is new (no data from fetch)
-             dataToolkit = jsonData; //assign "empty" json to data for toolkit
-          } else {
-            dataToolkit = dataValue; //assign existing data from toolkit
-          }
-          this.setState({ 
+      if (this.state.user === null) {
+        this.setState({ 
             isLoading: false, 
-            data: dataToolkit,
-          });
+            data: jsonData,
+        });
+      } else {  
+            try {
+                const data = await ajax.getToolkit(this.state.user.id, 'emergency');
+        
+                const dataValue = data.value;
+                var dataToolkit = [];
+                if (dataValue === null) {//if toolkit is new (no data from fetch)
+                  dataToolkit = jsonData; //assign "empty" json to data for toolkit
+                } else {
+                  dataToolkit = dataValue; //assign existing data from toolkit
+                }
+                this.setState({ 
+                  isLoading: false, 
+                  data: dataToolkit,
+                });
 
-      } catch(error) {
-        console.log(error);
+            } catch(error) {
+              console.log(error);
+            }
       }
-    
     }
 
     //function to navigate to the detail information
     setCurrentItem = (item, keyId) => {
+      if (this.state.user !== null) {
         this.setState({
               currentItem: {
                 label: item.label,
@@ -82,6 +89,7 @@ class EmergencyToolkit extends Component {
               },
               keyId: keyId,
         });
+      }
     }
 
     //function that comes from child component ToolkitItemDetail, to list all items
@@ -147,7 +155,9 @@ class EmergencyToolkit extends Component {
                     instructions="Press a row to enter or change information."
                     //style={{fontSize: wp('4%')}}
             />
-
+                   {this.state.user === null &&   
+                        <Message />
+                    }
             <View style={styles.labelEsential}>    
                 <MainText><SubHeadingText>ESSENTIAL INFORMATION</SubHeadingText></MainText>
             </View>

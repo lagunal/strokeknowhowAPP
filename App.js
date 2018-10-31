@@ -12,7 +12,6 @@ import { Navigation } from "react-native-navigation";
 // };
 // I18n.fallbacks = true;
 
-
 import HomeScreen from "./src/screens/Home.Screen";
 import MedicationsScreen from './src/screens/Medications.Screen';
 import WeeklyPlanScreen from './src/screens/WeeklyPlan.Screen';
@@ -35,6 +34,7 @@ import BioScreen from './src/screens/Bio.Screen';
 import ContentsScreen from './src/screens/Contents.Screen';
 import NewDayScreen from './src/screens/NewDay.Screen';
 import ProfileScreen from './src/screens/Profile.Screen';
+import ModalCoverScreen from './src/screens/ModalCover.Screen';
 
 // Register Screens
 Navigation.registerComponent("StrokeApp.HomeScreen", () => HomeScreen);
@@ -59,23 +59,14 @@ Navigation.registerComponent("StrokeApp.BioScreen", () => BioScreen);
 Navigation.registerComponent("StrokeApp.ContentsScreen", () => ContentsScreen);
 Navigation.registerComponent("StrokeApp.ProfileScreen", () => ProfileScreen);
 Navigation.registerComponent('StrokeApp.NewDayScreen', () => NewDayScreen);
+Navigation.registerComponent("StrokeApp.ModalCoverScreen", () => ModalCoverScreen);
 
-// Start a App
-//   Promise.all([
-//       Icon.getImageSource("ios-menu", 30)
-//   ]).then(sources => {
-  
-      // setInterval(() => {
-        //SplashScreen.hide();
-      // }, 3000);
-      
-      Navigation.startSingleScreenApp({
-        screen: {
-          screen: "StrokeApp.LoginScreen",
-          title: "Login",
 
-        },
-      });
-//});
+Navigation.startSingleScreenApp({
+    screen: {
+      screen: "StrokeApp.ModalCoverScreen",
+    },
+});
+
 
 

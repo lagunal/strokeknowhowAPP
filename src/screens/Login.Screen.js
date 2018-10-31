@@ -32,17 +32,7 @@ const { width, height } = Dimensions.get("window");
 
 
 class LoginScreen extends Component {
-  
-  // componentDidMount() {
-  //   lor(this); 
-  // }
-
-  componentWillUnMount() {
-    rol();
-    startTabs();
-  
-  }
-
+ 
   static navigatorStyle = {
       navBarHidden: true,
   };
@@ -64,45 +54,71 @@ class LoginScreen extends Component {
         inLogin: true,
         loading: false,
         showSpinner: false,
-        videoPaused: true,
-        modalVisible: true,
+        videoPaused: false,
+        modalVisible: false,
       }
+      this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     
   }
 
-  async componentDidMount() {
-    //close modal
-    setTimeout(function () {
-          this.setState({ 
-            modalVisible: false,
-            videoPaused: false,
-          });
-          this.autoLogin(); //performs autologin
-    }.bind(this), 6000);
-  
+  onNavigatorEvent(event) {
+    console.log(event);
+    switch(event.id) {
+      case 'willAppear':
+       break;
+      case 'didAppear':
+          this.setState(prevState => ({
+            videoPaused: !prevState.videoPaused
+          }))
+        break;
+      case 'willDisappear':
+          this.setState(prevState => ({
+            videoPaused: !prevState.videoPaused
+          }))
+        break;
+      case 'didDisappear':
+        break;
+      case 'willCommitPreview':
+        break;
+    }
   }
 
-  async autoLogin() {
-      try {
-        //const user = await AsyncStorage.setItem('user', '');
-        const userData = await AsyncStorage.getItem('user');
-
-        this.setState({ user: JSON.parse(userData) });
-        //Try login
-        if(this.state.user && this.state.user.username !=='' && this.state.user.password !=='') {
-          this.setState({username: this.state.user.username, password: this.state.user.password});
-          this.onEMailLogin();
-        }
-      } catch (error) {
-        console.log(error);
-        alert(error);
-      }
+  componentDidMount() {
+   // this.autoLogin(); //performs autologin
+    this.setState(prevState => ({
+          videoPaused: !prevState.videoPaused
+    }))
   }
 
-  //start bottom tabs navigation 
-  loggedHandler() {
-    startTabs(); 
+  componentWillUnMount() {
+      startTabs();
+      this.setState(prevState => ({
+        videoPaused: !prevState.videoPaused
+      }))
   }
+
+  // async autoLogin() {
+  //     try {
+  //       //const user = await AsyncStorage.setItem('user', '');
+  //       const userData = await AsyncStorage.getItem('user');
+
+  //       this.setState({ user: JSON.parse(userData) });
+  //       //Try login
+  //       if(this.state.user && this.state.user.username !=='' && this.state.user.password !=='') {
+  //         this.setState({username: this.state.user.username, password: this.state.user.password});
+  //         this.onEMailLogin();
+  //         // this.props.navigator.push({
+  //         //   screen: "StrokeApp.ProfileScreen",
+  //         // });
+  //         // this.props.navigator.resetTo({
+  //         //   screen: 'StrokeApp.ProfileScreen', 
+  //         // });
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //       alert(error);
+  //     }
+  // }
 
   //EMAIL LOGIN
   onEMailLogin = () => {
@@ -137,7 +153,7 @@ class LoginScreen extends Component {
           
           this.setUser(user);
           this.setState({videoPaused: true})
-          this.loggedHandler();
+          startTabs(); 
           
         }
   
@@ -345,15 +361,6 @@ class LoginScreen extends Component {
       return (
         <ScrollView >
           <KeyboardAvoidingView behavior='position' style={videoStyles.KeyboardAvoidingView}>
-
-            <Modal
-              animationType="slide"
-              transparent={false}
-              visible={this.state.modalVisible}
-              onRequestClose={()=>{}}
-            >
-                <Image style={styles.backgroundImage}  source={require('../assets/app.jpg')}/>
-            </Modal>          
 
             <Spinner visible={this.state.showSpinner} textContent={"Please wait..."} textStyle={{color: '#FFF'}} />
 

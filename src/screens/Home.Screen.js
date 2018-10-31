@@ -33,7 +33,7 @@ const emergencyIcon = require('../assets/emergency-station-icon.png');
 const strokeLine = require('../assets/helpline-logo.png');
 const bioImage = require('../assets/bio.jpg');
 const weeklyScheduleIcon = require('../assets/fotoWeeklySchedule.jpg');
-const helpNeededIcon = require('../assets/fotohelpneeded.jpg');
+const helpNeededIcon = require('../assets/fotohelpneeded.png');
 const medicationIcon = require('../assets/FotoMedication.jpg');
 const physicalIcon = require('../assets/FotoPhysicalTherapy.jpg');
 

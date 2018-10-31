@@ -15,9 +15,8 @@ import HeaderToolkit from '../../components/UI/HeaderToolkit';
 import MainText from "../../components/UI/MainText";
 import BodyScroll from "../../components/UI/BodyScroll";
 import HelpNeededRow from "../../components/Toolkits/HelpNeeded/HelpNeededRow";
-
 import HelpNeededDetail from "../../components/Toolkits/HelpNeeded/HelpNeededDetail"
-
+import Message from "../../components/UI/Message";
 import jsonData from '../../assets/json/helpNeededToolkit.json'; //json used for first time toolkit.
 import ajax from '../../ajax/ajax';
 
@@ -57,33 +56,42 @@ class HelpNeededToolkit extends Component {
       //get the id from logged user
       const userData = await AsyncStorage.getItem('user');
       this.setState({ user: JSON.parse(userData) });
-      try {
-          const data = await ajax.getToolkit(this.state.user.id, 'helpNeeded');
-          const dataValue = data.value;
-          var dataToolkit = [];
-          if (dataValue === null) {//if toolkit is new (no data from fetch)
-             dataToolkit = jsonData; //assign "empty" json to data for toolkit
-          } else {
-            dataToolkit = dataValue; //assign existing data from toolkit
-          }
-          this.setState({ 
+      if (this.state.user === null) {
+        this.setState({ 
             isLoading: false, 
-            data: dataToolkit,
-          });
-      } catch(error) {
-        console.log(error);
+            data: jsonData,
+        });
+      } else {  
+            try {
+                const data = await ajax.getToolkit(this.state.user.id, 'helpNeeded');
+                const dataValue = data.value;
+                var dataToolkit = [];
+                if (dataValue === null) {//if toolkit is new (no data from fetch)
+                    dataToolkit = jsonData; //assign "empty" json to data for toolkit
+                } else {
+                    dataToolkit = dataValue; //assign existing data from toolkit
+                }
+                this.setState({ 
+                    isLoading: false, 
+                    data: dataToolkit,
+                });
+            } catch(error) {
+                console.log(error);
+            }
       }
     
     }
 
     //function to navigate to the detail information
     setCurrentItem = (item, keyId) => {
-        this.setState({
-              currentItem: {
-                helper: item.helper,                         
-              },
-              keyId: keyId,
-        });
+        if (this.state.user !== null) {
+            this.setState({
+                currentItem: {
+                    helper: item.helper,                         
+                },
+                keyId: keyId,
+            });
+        }
     }
 
     //function that comes from child component ToolkitItemDetail, to list all items
@@ -152,7 +160,9 @@ class HelpNeededToolkit extends Component {
                     directions5='Then Save'  
                     instructions="Press a box to enter or change information."
                   />
-
+                    {this.state.user === null &&   
+                        <Message />
+                    }
                   <View style={[styles.containerGrid,{backgroundColor: background}]}> 
                       <View style={[styles.cell, {backgroundColor: 'white'}]}>
                           <Text style={styles.titleMed}>Monday</Text>

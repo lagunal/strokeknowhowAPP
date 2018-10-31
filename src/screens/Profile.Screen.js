@@ -29,7 +29,11 @@ class ProfileScreen extends Component {
     try {
       const userData = await AsyncStorage.getItem('user');
       this.setState({ user: JSON.parse(userData) });
-
+      if (this.state.user === null) {
+          rootNavigator.resetTo({
+            screen: 'StrokeApp.LoginScreen', 
+          });
+      }
     } catch (error) {
       console.log(error);
       alert(error);
@@ -41,23 +45,26 @@ class ProfileScreen extends Component {
         <TouchableOpacity
           style={styles.EMailLogin}
           onPress={ this.logOutHandler } >
-          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>LOGOUT</Text>
+          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>{this.state.user ? 'LOGOUT' : 'LOGIN'}</Text>
         </TouchableOpacity>
 
       </View>
   }  
 
   async logOutHandler () {
-    rootNavigator.resetTo({
-      screen: 'StrokeApp.LoginScreen',
-      backButtonHidden: true,
-      navigatorStyle: {
-        tabBarHidden: true,
-      },
-      title: 'Login',
-    });
-
+    // rootNavigator.resetTo({
+    //   screen: 'StrokeApp.LoginScreen',
+    //   backButtonHidden: true,
+    //   navigatorStyle: {
+    //     tabBarHidden: true,
+    //   },
+    //   title: 'Login',
+    // });
     const user = await AsyncStorage.setItem('user', '');
+    rootNavigator.resetTo({
+      screen: 'StrokeApp.LoginScreen', 
+    });
+    
   }
 
   openGallery () {
