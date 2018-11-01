@@ -54,7 +54,7 @@ class LoginScreen extends Component {
         inLogin: true,
         loading: false,
         showSpinner: false,
-        videoPaused: false,
+        videoPaused: true,
         modalVisible: false,
       }
       this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -68,12 +68,12 @@ class LoginScreen extends Component {
        break;
       case 'didAppear':
           this.setState(prevState => ({
-            videoPaused: !prevState.videoPaused
+            videoPaused: false
           }))
         break;
       case 'willDisappear':
           this.setState(prevState => ({
-            videoPaused: !prevState.videoPaused
+            videoPaused: true
           }))
         break;
       case 'didDisappear':
@@ -85,16 +85,16 @@ class LoginScreen extends Component {
 
   componentDidMount() {
    // this.autoLogin(); //performs autologin
-    this.setState(prevState => ({
-          videoPaused: !prevState.videoPaused
-    }))
+    // this.setState(prevState => ({
+    //       videoPaused: !prevState.videoPaused
+    // }))
   }
 
   componentWillUnMount() {
       startTabs();
-      this.setState(prevState => ({
-        videoPaused: !prevState.videoPaused
-      }))
+      // this.setState(prevState => ({
+      //   videoPaused: !prevState.videoPaused
+      // }))
   }
 
   // async autoLogin() {
