@@ -161,7 +161,7 @@ class HelpNeededToolkit extends Component {
                     instructions="Press a box to enter or change information."
                   />
                     {this.state.user === null &&   
-                        <Message />
+                        <Message {...this.props}/>
                     }
                   <View style={[styles.containerGrid,{backgroundColor: background}]}> 
                       <View style={[styles.cell, {backgroundColor: 'white'}]}>

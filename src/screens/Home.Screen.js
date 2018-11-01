@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import {
-  StyleSheet, View, StatusBar, ScrollView, TouchableOpacity, Text, Linking, Image, Dimensions
+  StyleSheet, View, StatusBar, ScrollView, TouchableOpacity, Text, Linking, Image, Dimensions, Platform
 } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Video from 'react-native-video';
@@ -214,7 +214,7 @@ class HomeScreen extends Component {
                       <View>
                               <TouchableOpacity onPress={this.playVideoAnimation}>
                                   <View style={{padding: 20}}>
-                                      <MainText><SubHeadingText style={{marginBottom: 0, fontSize: wp('3.5%')}}>Touch video to open full screen player &rarr;</SubHeadingText></MainText>
+                                      <MainText><SubHeadingText style={{marginBottom: 0, fontSize: wp('3.5%')}}>{Platform.OS !== 'android' ? 'Touch video to open full screen player' : 'VIDEO'}</SubHeadingText></MainText>
                                       <Video
                                         source={{uri: "https://strokeknowhow.org/wp-content/uploads/2018/08/16_Transfer_from_bed_to_wheelchair.mp4"}}
                                         ref={(ref) => {

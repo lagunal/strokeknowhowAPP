@@ -175,7 +175,7 @@ class MedicationsToolkit extends Component {
                     //style={{fontSize: wp('4%')}}
                 />
                     {this.state.user === null &&   
-                        <Message />
+                        <Message {...this.props}/>
                     }
                 <View style={styles.containerGrid}> 
 

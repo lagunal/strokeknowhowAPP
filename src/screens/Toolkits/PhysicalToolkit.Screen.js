@@ -138,7 +138,7 @@ class PhysicalToolkit extends Component {
                         style={{fontSize: wp('4.3%')}}
                 />
                     {this.state.user === null &&   
-                        <Message />
+                        <Message {...this.props}/>
                     }
                   <View style={[styles.containerGrid,{backgroundColor: background}]}> 
                       <View style={[styles.cell, {backgroundColor: 'white'}]}>
