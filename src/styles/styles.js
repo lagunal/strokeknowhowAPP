@@ -187,7 +187,7 @@ export default StyleSheet.create({
     },
     inputStyle: {
         paddingBottom: 2,
-        color: 'white',
+        //color: 'white',
         fontSize: 17,
         //flex: 1,
         height: '100%',

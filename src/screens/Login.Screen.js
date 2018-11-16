@@ -364,7 +364,7 @@ class LoginScreen extends Component {
 
             <Spinner visible={this.state.showSpinner} textContent={"Please wait..."} textStyle={{color: '#FFF'}} />
 
-            <View style={videoStyles.backgroundVideo}>
+            {/* <View style={videoStyles.backgroundVideo}>
               <Video
                 source={{uri: "https://strokeknowhow.org/wp-content/uploads/2018/08/Ben_on_how_he_gets_starred_at.mp4"}}
                 style={videoStyles.video}
@@ -379,12 +379,15 @@ class LoginScreen extends Component {
                 //resizeMode='cover'
                 repeat={true}
               />
-            </View>
-            
+            </View> */}
+            {/* <View style={{backgroundColor: 'yellow', alignItems: 'center', marginTop: hp('5%')}}>
+              <Image style={{width: 100, height: 100}} source={require('../assets/logo80.jpg')} resizeMode='contain' ></Image>
+            </View> */}
           
-            <View style={{marginTop: hp('10%')}}>
-              <HeadingText style={{color: 'white', fontSize: hp('4%')}}>Welcome to {`\n`} StrokeKnowHow</HeadingText>
-              <MainText style={{textAlign: 'center', fontSize: hp('3%'), color: 'white'}}>We are a worldwide {`\n`}<Text style={{fontSize: hp('5%'), fontWeight: 'bold'}}>stroke community</Text> {`\n`} learning from one another</MainText>
+            <View style={{marginTop: hp('2%')}}>
+              <Image style={{alignSelf: 'center'}} source={require('../assets/logo60.jpg')} resizeMode='contain' ></Image>
+              <HeadingText style={{fontSize: hp('4%')}}>Welcome to {`\n`} StrokeKnowHow</HeadingText>
+              <MainText style={{textAlign: 'center', fontSize: hp('3%')}}>We are a worldwide {`\n`}<Text style={{fontSize: hp('5%'), fontWeight: 'bold'}}>stroke community</Text> {`\n`} learning from one another</MainText>
             </View>
 
            
@@ -444,7 +447,7 @@ class LoginScreen extends Component {
 
                 {!this.state.inLogin &&
                   <View style={{marginTop: 0}}>
-                    <Text style={[styles.terms, {color: 'white'}]}>Tip: Everyone in your family will use this password, so tell them what it is!</Text>
+                    <Text style={styles.terms}>Tip: Everyone in your family will use this password, so tell them what it is!</Text>
                   </View>}  
                   
             </View>
@@ -462,7 +465,7 @@ class LoginScreen extends Component {
             {this.state.inLogin &&
             <View style={{marginTop: 0, flex:1, flexDirection: 'row', justifyContent: 'center'}}>
               {/* {this.renderButtonOrRegister()} */}
-                <MainText style={{color: 'white'}}>Don't have an account?</MainText>
+                <MainText>Don't have an account?</MainText>
                 <TouchableOpacity 
                       onPress={this.onRegisterScreenButton}>
                       <MainText style={{color: '#b30000', fontWeight: 'bold'}}>Sign up</MainText>
@@ -480,7 +483,7 @@ class LoginScreen extends Component {
             {!this.state.inLogin &&
               <View style={{marginTop: 0, flex:1, flexDirection: 'row', justifyContent: 'center'}}>
                 {/* {this.renderButtonOrRegister()} */}
-                  <MainText style={{color: 'white'}}>Already have an account?</MainText>
+                  <MainText>Already have an account?</MainText>
                   <TouchableOpacity 
                         onPress={this.goToLogin}>
                         <MainText style={{color: '#b30000', fontWeight: 'bold'}}>Log in</MainText>
