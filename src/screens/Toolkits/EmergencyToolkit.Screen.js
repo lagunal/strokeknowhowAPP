@@ -20,6 +20,7 @@ import ToolkitItemDetail from "../../components/Toolkits/Emergency/ToolkitItemDe
 import ToolkitSingleItem from "../../components/Toolkits/Emergency/ToolkitSingleItem"
 import SubHeadingText from '../../components/UI/SubHeadingText';
 import Message from "../../components/UI/Message";
+
 import jsonData from '../../assets/json/emergencyToolkit.json'; //json used for first time toolkit.
 import ajax from '../../ajax/ajax';
 
@@ -147,7 +148,7 @@ class EmergencyToolkit extends Component {
         return (
           <View style={styles.container}>
           <BodyScroll>
-            
+     
             <HeaderToolkit 
                     title='INTERACTIVE EMERGENCY INFORMATION STATION'
                     directions1='Talk or Type'

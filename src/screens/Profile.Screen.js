@@ -9,6 +9,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import MainText from "../components/UI/MainText";
 import SubHeadingText from "../components/UI/SubHeadingText";
 import styles from '../styles/styles';
+import startTabs from './MainTabs';
 
 //import ImagePicker from 'react-native-image-picker';
 
@@ -54,9 +55,10 @@ class ProfileScreen extends Component {
   async logOutHandler () {
  
     const user = await AsyncStorage.setItem('user', '');
-    rootNavigator.resetTo({
-      screen: 'StrokeApp.LoginScreen', 
-    });
+    // rootNavigator.resetTo({
+    //   screen: 'StrokeApp.LoginScreen', 
+    // });
+    startTabs();
     
   }
 

@@ -3,13 +3,16 @@ import { Navigation } from 'react-native-navigation';
 import { Platform, AsyncStorage } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
+
 const startTabs = () => {  
-    
+ 
     Promise.all([
         Icon.getImageSource(Platform.OS === 'android' ? "md-home" : "ios-home", 20),  //home icon
         Icon.getImageSource(Platform.OS === 'android' ? "md-create" : "ios-create", 20), //toolkit icon
         Icon.getImageSource(Platform.OS === 'android' ? "md-list-box" : "ios-list-box", 20), //contents icon
-        Icon.getImageSource(Platform.OS === 'android' ? "md-people" : "ios-people", 20) //sign out icon
+        Icon.getImageSource(Platform.OS === 'android' ? "md-people" : "ios-people", 20), //sign out icon
+        AsyncStorage.getItem('user')
     ]).then(sources => {
         Navigation.startTabBasedApp({
             tabs: [
@@ -32,12 +35,12 @@ const startTabs = () => {
                     title: "Interactive Toolkits",
                     icon: sources[1],
                 },
-                {
-                    screen: "StrokeApp.ProfileScreen",
-                    label: "Account",
-                    icon: sources[3],
+                // {
+                //     screen: "StrokeApp.ProfileScreen",
+                //     label: "Account",
+                //     icon: sources[3],
                     
-                },
+                // },
             ],
             tabsStyle: { //for iOS
                 tabBarSelectedButtonColor: '#000099',
@@ -70,6 +73,8 @@ const startTabs = () => {
             },
         });
     });
+  
 };
+
 
 export default startTabs;

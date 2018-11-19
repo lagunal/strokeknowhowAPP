@@ -1,28 +1,43 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import {widthPercentageToDP as wp, 
         heightPercentageToDP as hp,
         } from 'react-native-responsive-screen';
 
 import SubHeadingText from './SubHeadingText';
-
+import ModalLogin from '../../screens/Toolkits/ModalLoginScreen';
 
 
 class Message extends Component {
-
+    
+    state = {
+        showModal: false
+    }
+    
     pressHandler = () => {
-        this.props.navigator.switchToTab({
-            tabIndex: 3 
+        // this.props.navigator.switchToTab({
+        //     tabIndex: 3 
+        // });
+        this.setState((prevState) => {
+            return {            
+                showModal: !prevState.showModal
+            }    
         });
     }
     
     render(){
             return(
-                <TouchableOpacity onPress={this.pressHandler}>
-                    <SubHeadingText style={{color: 'red', fontSize: hp('2%')}}
-                    >You MUST login to use Toolkit. {'\n'}Please go to Account Tab or Click here
-                    </SubHeadingText>
-                </TouchableOpacity>
+                <View>
+                    <ModalLogin show={this.state.showModal} 
+                                setModalVisible={this.pressHandler}
+                                {...this.props}
+                    />
+                    <TouchableOpacity onPress={this.pressHandler}>
+                        <SubHeadingText style={{color: 'red', fontSize: hp('2%')}}
+                        >You MUST login to use Toolkit. {'\n'}Please Click here to Login
+                        </SubHeadingText>
+                    </TouchableOpacity>
+                </View>
             )
     }
 }

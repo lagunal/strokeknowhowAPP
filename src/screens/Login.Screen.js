@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import Video from 'react-native-video';
-
+//import Video from 'react-native-video';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {widthPercentageToDP as wp, 
-        heightPercentageToDP as hp,
-        listenOrientationChange as lor,
-        removeOrientationListener as rol
+        heightPercentageToDP as hp
        } from 'react-native-responsive-screen';
 
 import {
   StyleSheet, View, Image, TouchableOpacity, ScrollView, 
-  KeyboardAvoidingView, Text, TextInput, Picker, AsyncStorage,
-  Dimensions, Linking, Platform, Modal
+  KeyboardAvoidingView, Text, AsyncStorage,
+  Dimensions, Platform
 } from 'react-native';
 
-import Icon from "react-native-vector-icons/Ionicons";
+//import Icon from "react-native-vector-icons/Ionicons";
 
 import styles from '../styles/styles';
 
@@ -22,66 +20,139 @@ import HeadingText from '../components/UI/HeadingText';
 import MainText from "../components/UI/MainText";
 import TextFieldInput from '../components/UI/TextInputField';
 import startTabs from './MainTabs'; //start tabs navigation
+import Button from "../components/UI/Button";
+
 
 //import validateEmail from '../utility/validateEmail.js';
 //import validatePassword from '../utility/validatePassword.js';
 
 const apiUrl = 'https://strokeknowhow.org/api/';
 
-const { width, height } = Dimensions.get("window");
+//const { width, height } = Dimensions.get("window");
 
 
 class LoginScreen extends Component {
  
-  static navigatorStyle = {
-      navBarHidden: true,
-  };
+  // static navigatorStyle = {
+  //     navBarHidden: true,
+  // };
 
-  constructor(props) {
-      super(props);
+  // constructor(props) {
+  //     super(props);
       
-      this.state = {
-        //viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape",
-        //viewScreen: Dimensions.get("window").height < 600 ? "small" : "large",
-        username: '', 
-        name: '', 
-        email: '', 
-        password: '', 
-        enterButtonDisabled: false,
-        error: '',
-        emailError: '',
-        passwordError: '',
-        inLogin: true,
-        loading: false,
-        showSpinner: false,
-        videoPaused: true,
-        modalVisible: false,
-      }
-      this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+      
+  //     //this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     
+  // }
+
+  state = {
+    //viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape",
+    //viewScreen: Dimensions.get("window").height < 600 ? "small" : "large",
+    username: '', 
+    name: '', 
+    email: '', 
+    password: '', 
+    enterButtonDisabled: false,
+    error: '',
+    emailError: '',
+    passwordError: '',
+    inLogin: true,
+    loading: false,
+    showSpinner: false,
+   // videoPaused: true,
+    //modalVisible: false,
   }
 
-  onNavigatorEvent(event) {
-    console.log(event);
-    switch(event.id) {
-      case 'willAppear':
-       break;
-      case 'didAppear':
-          this.setState(prevState => ({
-            videoPaused: false
-          }))
-        break;
-      case 'willDisappear':
-          this.setState(prevState => ({
-            videoPaused: true
-          }))
-        break;
-      case 'didDisappear':
-        break;
-      case 'willCommitPreview':
-        break;
-    }
-  }
+  // onNavigatorEvent(event) {
+  //   console.log(event);
+  //   switch(event.id) {
+  //     case 'willAppear':
+  //      break;
+  //     case 'didAppear':
+  //         this.setState(prevState => ({
+  //           videoPaused: false
+  //         }))
+  //       break;
+  //     case 'willDisappear':
+  //         this.setState(prevState => ({
+  //           videoPaused: true
+  //         }))
+  //       break;
+  //     case 'didDisappear':
+  //       break;
+  //     case 'willCommitPreview':
+  //       break;
+  //   }
+  // }
+  startTabs() {  
+    
+    Promise.all([
+        Icon.getImageSource(Platform.OS === 'android' ? "md-home" : "ios-home", 20),  //home icon
+        Icon.getImageSource(Platform.OS === 'android' ? "md-create" : "ios-create", 20), //toolkit icon
+        Icon.getImageSource(Platform.OS === 'android' ? "md-list-box" : "ios-list-box", 20), //contents icon
+        Icon.getImageSource(Platform.OS === 'android' ? "md-people" : "ios-people", 20) //sign out icon
+    ]).then(sources => {
+        Navigation.startTabBasedApp({
+            tabs: [
+                {
+                    screen: "StrokeApp.HomeScreen",
+                    label: "Home",
+                    title: "Home",
+                    icon: sources[0],
+                    
+                },
+                {
+                    screen: "StrokeApp.ContentsScreen",
+                    label: "Contents",
+                    title: "Contents",
+                    icon: sources[2],
+                },
+                {
+                    screen: "StrokeApp.ToolkitHomeScreen",
+                    label: "Toolkits",
+                    title: "Interactive Toolkits",
+                    icon: sources[1],
+                },
+                {
+                    screen: "StrokeApp.ProfileScreen",
+                    label: "Account",
+                    icon: sources[3],
+                    
+                },
+            ],
+            tabsStyle: { //for iOS
+                tabBarSelectedButtonColor: '#000099',
+                //tabBarBackgroundColor: '#0032e6', // #152a53 #000099 
+                tabBarBackgroundColor: '#000099',
+                tabBarButtonColor: '#000099',
+                tabBarTextFontFamily: 'Helvetica', 
+                tabBarTextFontSize: 20,
+                //tabBarSelectedTextColor: 'black',
+                tabBarTextColor: 'white',
+                navBarButtonColor: '#b30000',
+                navBarTextColor: '#b30000',
+                // tabBarOptions: {
+                //     labelStyle: { fontSize: 12 },
+                //     height: 50,
+                // }
+            },
+            appStyle: { //for Android
+                tabBarSelectedButtonColor: 'white',
+                tabBarBackgroundColor: '#000099',
+                tabBarButtonColor: 'white',
+                tabFontSize: 22,
+                selectedTabFontSize: 22,
+                //navBarHideOnScroll: true,
+                navBarBackgroundColor: '#000099',
+                navBarButtonColor: 'white',
+                navBarTextColor: 'white',
+                navBarTitleTextCentered: true,
+                //hideBackButtonTitle: true, //hide back button title for iOS
+            },
+        });
+    });
+  
+};
 
   componentDidMount() {
    // this.autoLogin(); //performs autologin
@@ -91,7 +162,7 @@ class LoginScreen extends Component {
   }
 
   componentWillUnMount() {
-      startTabs();
+      //startTabs();
       // this.setState(prevState => ({
       //   videoPaused: !prevState.videoPaused
       // }))
@@ -152,8 +223,8 @@ class LoginScreen extends Component {
           }
           
           this.setUser(user);
-          this.setState({videoPaused: true})
-          startTabs(); 
+         // this.setState({videoPaused: true})
+         this.startTabs; 
           
         }
   
@@ -207,7 +278,8 @@ class LoginScreen extends Component {
             } else {
               this.setUser(userReg);
 
-              this.goToLogin();
+              //this.goToLogin();
+              this.startTabs;
             }
 
             this.setState({showSpinner: false});
@@ -290,63 +362,63 @@ class LoginScreen extends Component {
   }  
 
   //Register Screen
-  renderButtonOrRegister() {
-    if(this.state.loading) {
-        return <Text>Wait...</Text>
-    }
-    return <View style={styles.buttonContainer}>
-        <TouchableOpacity disabled={this.state.enterButtonDisabled}
-          style={styles.EMailRegister}
-          onPress={this.onRegisterScreenButton} >
-          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>JOIN IN</Text>
-        </TouchableOpacity>
-      </View>;
-  }
+  // renderButtonOrRegister() {
+  //   if(this.state.loading) {
+  //       return <Text>Wait...</Text>
+  //   }
+  //   return <View style={styles.buttonContainer}>
+  //       <TouchableOpacity disabled={this.state.enterButtonDisabled}
+  //         style={styles.EMailRegister}
+  //         onPress={this.onRegisterScreenButton} >
+  //         <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>JOIN IN</Text>
+  //       </TouchableOpacity>
+  //     </View>;
+  // }
 
   //Register to wordpress
   renderButtonRegister() {
     if(this.state.loading) {
         return <Text>Wait...</Text>
     }
-    return <View style={styles.buttonContainer}>
-        <TouchableOpacity disabled={this.state.enterButtonDisabled || this.state.email.trim() == "" || this.state.password.trim() == ""}
-          style={styles.EMailRegister}
-          onPress={this.onRegisterButton} >
-          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>JOIN IN</Text>
-        </TouchableOpacity>
+    return <View style={[styles.buttonContainer, {marginBottom: 0}]}>
+            <TouchableOpacity disabled={this.state.enterButtonDisabled || this.state.email.trim() == "" || this.state.password.trim() == ""}
+              style={styles.EMailRegister}
+              onPress={this.onRegisterButton} >
+              <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>JOIN IN</Text>
+            </TouchableOpacity>
       </View>;
   }
 
   render() {
 
-    const videoStyles = StyleSheet.create({
+    // const videoStyles = StyleSheet.create({
 
-      backgroundVideo: {
-        flex: 1,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        width: wp('100%'), 
-        height: hp('100%'),
-      },
-      video: {
-        flex: 1,
-        width: wp('100%'), 
-        height: hp('100%'),
-      },
-      scroollView: {
-        flexGrow: 1, 
-        width: wp('100%'), 
-        height: hp('100%'), 
-        // paddingHorizontal: 0, 
-        // paddingVertical: 0
-      },
-      KeyboardAvoidingView: {
-        flex: 1
-      }
-    });
+    //   backgroundVideo: {
+    //     flex: 1,
+    //     position: 'absolute',
+    //     top: 0,
+    //     left: 0,
+    //     bottom: 0,
+    //     right: 0,
+    //     width: wp('100%'), 
+    //     height: hp('100%'),
+    //   },
+    //   video: {
+    //     flex: 1,
+    //     width: wp('100%'), 
+    //     height: hp('100%'),
+    //   },
+    //   scroollView: {
+    //     flexGrow: 1, 
+    //     width: wp('100%'), 
+    //     height: hp('100%'), 
+    //     // paddingHorizontal: 0, 
+    //     // paddingVertical: 0
+    //   },
+    //   KeyboardAvoidingView: {
+    //     flex: 1
+    //   }
+    // });
 
     // if(this.state.loading) {
     //   return (
@@ -360,7 +432,7 @@ class LoginScreen extends Component {
  
       return (
         <ScrollView >
-          <KeyboardAvoidingView behavior='position' style={videoStyles.KeyboardAvoidingView}>
+          <KeyboardAvoidingView behavior='position' style={{flex: 1}}>
 
             <Spinner visible={this.state.showSpinner} textContent={"Please wait..."} textStyle={{color: '#FFF'}} />
 
@@ -436,7 +508,7 @@ class LoginScreen extends Component {
                       autoCorrect={false}
                       secureTextEntry
                       value={this.state.password}
-                      /*onChangeText={password => this.setState({ password })}*/
+                      //onChangeText={password => this.setState({ password })}
                       onChangeText={(password) => this.validatePassword(password)}
                     />
                 </View>
@@ -458,7 +530,7 @@ class LoginScreen extends Component {
             </View>}
 
             {!this.state.inLogin &&
-            <View style={{marginTop: 0}}>
+            <View style={{marginTop: 0, marginBottom: 0}}>
               {this.renderButtonRegister()}
             </View>}
 
@@ -483,10 +555,10 @@ class LoginScreen extends Component {
             {!this.state.inLogin &&
               <View style={{marginTop: 0, flex:1, flexDirection: 'row', justifyContent: 'center'}}>
                 {/* {this.renderButtonOrRegister()} */}
-                  <MainText>Already have an account?</MainText>
+                  <MainText style={{marginTop: 0}}>Already have an account?</MainText>
                   <TouchableOpacity 
                         onPress={this.goToLogin}>
-                        <MainText style={{color: '#b30000', fontWeight: 'bold'}}>Log in</MainText>
+                        <MainText style={{color: '#b30000', fontWeight: 'bold', marginTop: 0}}>Log in</MainText>
                   </TouchableOpacity>
               </View>}
 

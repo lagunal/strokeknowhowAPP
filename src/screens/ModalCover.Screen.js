@@ -39,7 +39,7 @@ class ModalCoverScreen extends Component {
                     onRequestClose={()=>{}}
                     onDismiss={this.startApp}
                 >
-                    <Image style={styles.backgroundImage}  source={require('../assets/app.jpg')}/>
+                    <Image style={styles.backgroundImage}  source={require('../assets/appcoverEnglish.jpg')}/>
                     
                 </Modal>   
         )

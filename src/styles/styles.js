@@ -117,7 +117,7 @@ export default StyleSheet.create({
     buttonContainer: {
         /*backgroundColor: '#2980b6',*/
         /*paddingVertical: 10,*/
-        flex: 1,
+        //flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -216,7 +216,7 @@ export default StyleSheet.create({
         //borderBottomWidth: 1,
     },
     EMailLogin: {
-        flex:1,
+        //flex:1,
         opacity: 1,
         justifyContent: 'center',
         flexDirection: 'row',
@@ -228,7 +228,7 @@ export default StyleSheet.create({
         width: '100%',
     },
     EMailRegister: {
-        flex:1,
+        //flex:1,
         opacity: 1,
         justifyContent: 'center',
         flexDirection: 'row',

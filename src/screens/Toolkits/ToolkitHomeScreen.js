@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 import {
-  StyleSheet, View, Text, TouchableOpacity
+  StyleSheet, View, Text, TouchableOpacity, ScrollView, AsyncStorage
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import SubHeadingText from '../../components/UI/SubHeadingText';
 import MainText from "../../components/UI/MainText";
-
+import Button from '../../components/UI/Button';
+import startTabs from '../../screens/MainTabs';
 
 class ToolkitHomeScreen extends Component {
 
@@ -17,6 +18,19 @@ class ToolkitHomeScreen extends Component {
       
   }
 
+  state = {
+      user: null
+  }
+
+  async componentDidMount() {
+    try {
+      const userData = await AsyncStorage.getItem('user');
+      this.setState({ user: JSON.parse(userData) });
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  }
 
   handlePressEmergency = () => {
     this.props.navigator.push({
@@ -44,16 +58,21 @@ class ToolkitHomeScreen extends Component {
     });
   }
 
+  async logOutHandler () {
+    const user = await AsyncStorage.setItem('user', '');
+    startTabs();
+  }
+  
   render() {
 
     return (
-      <View style={styles.container}>
-
+      <View style={stylesHome.container}>
+        <ScrollView >
                 <TouchableOpacity onPress={this.handlePressHelpNeeded}>
-                    <View style={styles.item}>
-                        <Icon style={styles.icon} name="ios-people" size={30} md="md-people"></Icon>    
+                    <View style={stylesHome.item}>
+                        <Icon style={stylesHome.icon} name="ios-people" size={30} md="md-people"></Icon>    
                         <MainText>
-                            <SubHeadingText style={styles.title}>
+                            <SubHeadingText style={stylesHome.title}>
                                 Help Needed Toolkit  
                             </SubHeadingText>
                         </MainText>  
@@ -62,10 +81,10 @@ class ToolkitHomeScreen extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={this.handlePressSchedule}>
-                    <View style={styles.item}>
-                        <Icon style={styles.icon} name="md-calendar" size={30} md="md-calendar"></Icon>    
+                    <View style={stylesHome.item}>
+                        <Icon style={stylesHome.icon} name="md-calendar" size={30} md="md-calendar"></Icon>    
                         <MainText>
-                            <SubHeadingText style={styles.title}>
+                            <SubHeadingText style={stylesHome.title}>
                                 Weekly Schedule Toolkit  
                             </SubHeadingText>
                         </MainText>  
@@ -74,10 +93,10 @@ class ToolkitHomeScreen extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={this.handlePressMedications}>
-                    <View style={styles.item}>
-                        <Icon style={styles.icon} name="ios-medkit" size={30} md="md-medkit"></Icon>    
+                    <View style={stylesHome.item}>
+                        <Icon style={stylesHome.icon} name="ios-medkit" size={30} md="md-medkit"></Icon>    
                         <MainText>
-                            <SubHeadingText style={styles.title}>
+                            <SubHeadingText style={stylesHome.title}>
                                 Medications Toolkit  
                             </SubHeadingText>
                         </MainText>  
@@ -86,10 +105,10 @@ class ToolkitHomeScreen extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={this.handlePressPhysical}>
-                    <View style={styles.item}>
-                        <Icon style={styles.icon} name="ios-bicycle" size={30} md="md-bicycle"></Icon>    
+                    <View style={stylesHome.item}>
+                        <Icon style={stylesHome.icon} name="ios-bicycle" size={30} md="md-bicycle"></Icon>    
                         <MainText>
-                            <SubHeadingText style={styles.title}>
+                            <SubHeadingText style={stylesHome.title}>
                                 Physical Therapy Toolkit  
                             </SubHeadingText>
                         </MainText>  
@@ -98,22 +117,40 @@ class ToolkitHomeScreen extends Component {
                 </TouchableOpacity> 
 
                 <TouchableOpacity onPress={this.handlePressEmergency}>
-                    <View style={styles.item}>
-                        <Icon style={styles.icon} name="ios-warning" size={30} md="md-warning"></Icon>    
+                    <View style={stylesHome.item}>
+                        <Icon style={stylesHome.icon} name="ios-warning" size={30} md="md-warning"></Icon>    
                         <MainText>
-                            <SubHeadingText style={styles.title}>
+                            <SubHeadingText style={stylesHome.title}>
                                 Emergency Information Toolkit
                             </SubHeadingText>
                         </MainText>  
                         
                     </View>
-                </TouchableOpacity> 
+                </TouchableOpacity>
+                {this.state.user && 
+                    <View style={{margin: wp('2%')}}>
+                        <MainText style={{fontWeight: 'bold', alignSelf: 'center'}}>USER INFORMATION</MainText>
+                        <View style={stylesHome.userWrapper}>
+                            <Icon size={40} name="ios-person" color={'#b30000'} style={stylesHome.Usericon}/>
+                            <MainText style={{fontWeight: 'bold'}}>{this.state.user.displayname}</MainText>
+                        </View>
+                        <View style={stylesHome.userWrapper}>
+                            <Icon size={40} name="ios-mail" color={'#b30000'} style={stylesHome.Usericon}/>
+                            <MainText style={{fontWeight: 'bold'}}>{this.state.user.email}</MainText>
+                        </View>
+                        <Button color={'#b30000'} textColor={'white'} onPress={this.logOutHandler}>
+                        Logout
+                        </Button>
+                    </View>
+                }
+
+        </ScrollView>            
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const stylesHome = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-evenly',
@@ -134,6 +171,13 @@ const styles = StyleSheet.create({
       marginHorizontal: 10,
       color: 'white',
   },
+  userWrapper: {
+      flexDirection: 'row',
+      justifyContent: 'center'
+  },
+  userIcon: {
+      margin: wp('1%'),
+  }
 
 });
 
