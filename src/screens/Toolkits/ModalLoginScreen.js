@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, View, Text, TextInput, StyleSheet, TouchableOpacity, AsyncStorage, Image, Platform, KeyboardAvoidingView } from 'react-native';
-import {widthPercentageToDP as wp, 
-    heightPercentageToDP as hp
-   } from 'react-native-responsive-screen';
+import { Modal, View, Text, TextInput, StyleSheet, TouchableOpacity, 
+         AsyncStorage, Image, Platform, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { widthPercentageToDP as wp, 
+         heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import styles from '../../styles/styles';
@@ -232,7 +232,8 @@ class ModalLogin extends Component {
             >
                
                 <View style={stylesModal.container}>
-                <KeyboardAvoidingView behavior={behavior}  style={{flex: 1}}>
+                <ScrollView>
+                <KeyboardAvoidingView behavior='position'  >
                     <Spinner visible={this.state.showSpinner} textContent={"Please wait..."}  />
                     <View >
                         <Image style={{alignSelf: 'center'}} source={require('../../assets/logo60.jpg')} resizeMode='contain' ></Image>
@@ -325,6 +326,7 @@ class ModalLogin extends Component {
                             </TouchableOpacity>
                     </View>
                     </KeyboardAvoidingView>
+                    </ScrollView>
                 </View>
             
             </Modal>

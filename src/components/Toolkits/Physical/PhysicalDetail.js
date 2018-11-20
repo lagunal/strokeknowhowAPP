@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import HeadingText from '../../UI/HeadingText';
@@ -36,14 +36,16 @@ class PhysicalDetail extends Component {
     render(){
 
         return(
-            <BodyScroll>
+           
 
-                <DetailToolkit 
-                    instructions={'Type in Exercise.'}
-                />
+               
 
             <View style={{flex: 1}}>    
-                                
+            <ScrollView>
+                <KeyboardAvoidingView behavior='position' style={{flex: 1}}>
+                    <DetailToolkit 
+                        instructions={'Type in Exercise.'}
+                    />
                     <MainText><SubHeadingText>Activity</SubHeadingText>  </MainText>
                     <TextInput
                             multiline = {true}
@@ -56,9 +58,10 @@ class PhysicalDetail extends Component {
                     <Button style={{margin: 50}} color={'#ED7030'} textColor={'white'} onPress={this.handlePress}>
                     Save
                     </Button>
-
+                    </KeyboardAvoidingView>
+            </ScrollView>
             </View>
-            </BodyScroll>
+          
         )
     }
 

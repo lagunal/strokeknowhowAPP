@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import HeadingText from '../../UI/HeadingText';
 import SubHeadingText from '../../UI/SubHeadingText';
@@ -59,7 +59,9 @@ class ToolkitItemDetail extends Component {
         const { item } = this.props;
         if (this.props.keyId[2]) { //if parent is ToolkitMedication
             return(
-                <View style={{flex: 1}}>    
+                <View style={{flex: 1}}>
+                 <ScrollView >
+                 <KeyboardAvoidingView behavior='position' style={{flex: 1}}>    
                     <DetailToolkit 
                         instructions={'Type in medication, dosage and purpose.'}
                     />
@@ -82,13 +84,17 @@ class ToolkitItemDetail extends Component {
                     <Button style={{margin: 50}} color={'#ED7030'} textColor={'white'} onPress={this.handlePress}>
                        Save
                     </Button>
+                </KeyboardAvoidingView>
+                </ScrollView>
                 </View>
             )
         }
 
         if (this.props.keyId[1]) { //if parent is ToolkitContactInfo
             return(
-                    <View style={{flex: 1}}>    
+                    <View style={{flex: 1}}> 
+                        <ScrollView >
+                        <KeyboardAvoidingView behavior='position' style={{flex: 1}}>    
                         <DetailToolkit 
                             instructions={'Type in contact information and phone number.'}
                         />
@@ -104,12 +110,16 @@ class ToolkitItemDetail extends Component {
                         <Button style={{margin: 50}} color={'#ED7030'} textColor={'white'} onPress={this.handlePress}>
                         Save
                         </Button>
+                        </KeyboardAvoidingView>
+                        </ScrollView>
                     </View>
             )
         }
         //parent is emergencyToolkitScreen
         return(
             <View style={{flex: 1}}>    
+                 <ScrollView >
+                 <KeyboardAvoidingView behavior='position' style={{flex: 1}}>    
                 <DetailToolkit 
                     instructions={'Type in allergies to medications or medical conditions.'}
                 />
@@ -122,6 +132,8 @@ class ToolkitItemDetail extends Component {
                 <Button style={{margin: 50}} color={'#ED7030'} textColor={'white'} onPress={this.handlePress}>
                 Save
                 </Button>
+                </KeyboardAvoidingView>
+                </ScrollView>
             </View>
         )
     }

@@ -1,6 +1,6 @@
 
 import { Navigation } from 'react-native-navigation';
-import { Platform, AsyncStorage } from 'react-native';
+import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
@@ -11,27 +11,26 @@ const startTabs = () => {
         Icon.getImageSource(Platform.OS === 'android' ? "md-home" : "ios-home", 20),  //home icon
         Icon.getImageSource(Platform.OS === 'android' ? "md-create" : "ios-create", 20), //toolkit icon
         Icon.getImageSource(Platform.OS === 'android' ? "md-list-box" : "ios-list-box", 20), //contents icon
-        Icon.getImageSource(Platform.OS === 'android' ? "md-people" : "ios-people", 20), //sign out icon
-        AsyncStorage.getItem('user')
+        Icon.getImageSource(Platform.OS === 'android' ? "md-people" : "ios-people", 20) //sign out icon
     ]).then(sources => {
         Navigation.startTabBasedApp({
             tabs: [
                 {
                     screen: "StrokeApp.HomeScreen",
-                    label: "Home",
+                    label: Platform.OS === 'ios' ? "Home" : "",
                     title: "Home",
                     icon: sources[0],
                     
                 },
                 {
                     screen: "StrokeApp.ContentsScreen",
-                    label: "Contents",
+                    label: Platform.OS === 'ios' ? "Contents" : "",
                     title: "Contents",
                     icon: sources[2],
                 },
                 {
                     screen: "StrokeApp.ToolkitHomeScreen",
-                    label: "Toolkits",
+                    label: Platform.OS === 'ios' ? "Toolkits" : "",
                     title: "Interactive Toolkits",
                     icon: sources[1],
                 },
@@ -57,6 +56,7 @@ const startTabs = () => {
                 //     labelStyle: { fontSize: 12 },
                 //     height: 50,
                 // }
+         
             },
             appStyle: { //for Android
                 tabBarSelectedButtonColor: 'white',
@@ -69,6 +69,7 @@ const startTabs = () => {
                 navBarButtonColor: 'white',
                 navBarTextColor: 'white',
                 navBarTitleTextCentered: true,
+            
                 //hideBackButtonTitle: true, //hide back button title for iOS
             },
         });

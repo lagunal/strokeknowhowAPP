@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, StyleSheet, Switch, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import HeadingText from '../../UI/HeadingText';
@@ -113,17 +113,15 @@ class MedicationDetail extends Component {
     
     render(){
         //const { item } = this.props;
-
+        const behavior = Platform.OS === 'ios' ? 'padding' : '';
         return(
+            <KeyboardAvoidingView behavior={behavior} style={{flex: 1}}>   
             <BodyScroll>
             
+            <View style={{flex: 1}}>    
                 <DetailToolkit 
                     instructions={'Type in medicine, choose time and days.'}
                 />
-                
-
-            <View style={{flex: 1}}>    
-                                
                 <MainText><SubHeadingText>Medicine/Dose</SubHeadingText>  </MainText>
                 <TextInput value={this.state.medicine} 
                         style={styles.inputStyleToolkit}
@@ -207,7 +205,9 @@ class MedicationDetail extends Component {
                 </Button>
 
             </View>
+          
             </BodyScroll>
+            </KeyboardAvoidingView>
         )
     }
 
