@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: 'black',
     },
     bullets: {
       marginVertical: 5,

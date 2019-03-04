@@ -22,69 +22,7 @@ class BladderControlScreen extends Component {
 
 
     render() {
-      // if (this.props.homeScreen === 'home') { 
-      //   return (
-      //     <View style={styles.container}>
-
-      //           <HeadingText>Bladder Control</HeadingText>
-
-      //           <ImageContainer source={bladderImage} style={styles.image}/>
-
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} Ask a doctor or nurse for help in reestablishing bladder control. 
-      //                      Brain and bladder need to keep dry on your schedule.
-      //           </MainText>
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} At first, urinate every hour, not wait for the urge, until urination is controlled. 
-      //                      With greater control, urinate every 3 to 4 hours.  
-      //           </MainText>
-
-      //           <HeadingText>Bowel Control</HeadingText>
-
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} Help is needed in re-training the brain’s ability to control movements. At first, empty on a routine. 
-      //                      Then, increase the time to relieve oneself. 
-      //           </MainText>
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} Constipation is an effect of stroke, also caused by certain medications, aging, inactivity, and low-fiber. 
-      //           </MainText>
-
-      //           <HeadingText>Drinking Water</HeadingText>
-
-      //           <MainText>  
-      //           {`\u2022`} We depend on drinking water to live. After a stroke, swallowing may be difficult, drink sips of water often to avoid dehydration. 
-      //                     Do not use a straw.                 
-      //           </MainText>
-
-      //           <HeadingText>Swallowing</HeadingText>
-
-      //           <ImageContainer source={swallowingImage}  />
-
-      //           <MainText>  
-      //               A speech therapist or nurse can help in retraining swallowing. 
-      //           </MainText>
-      //           <MainText style={styles.bullets}>
-      //           {`\u2022`} Act quickly in a swallowing emergency. Learn CPR. 
-      //           </MainText>
-      //           <MainText style={styles.bullets}>   
-      //           {`\u2022`} After eating, check for food in cheeks, under tongue, upper palate.              
-      //           </MainText>
-
-      //           <HeadingText>Questions for a Doctor</HeadingText>
-
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} What should we know about the stroke? High blood pressure? Diabetes?  Numbers to report? 
-      //           </MainText>  
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} Side effects of medicine to report?
-      //           </MainText>
-      //           <MainText style={styles.bullets}>  
-      //           {`\u2022`} Has hospital report been sent to my other doctors?
-      //           </MainText>
-
-      //     </View>           
-      //   );
-      // }  
+  
 
         return (
           <View style={styles.container}>
@@ -158,7 +96,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: 'black',
     },
     image: {
       //width: 250,

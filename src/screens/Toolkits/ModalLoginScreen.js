@@ -237,8 +237,8 @@ class ModalLogin extends Component {
                     <Spinner visible={this.state.showSpinner} textContent={"Please wait..."}  />
                     <View >
                         <Image style={{alignSelf: 'center'}} source={require('../../assets/logo60.jpg')} resizeMode='contain' ></Image>
-                        <HeadingText style={{fontSize: hp('4%')}}>Welcome to {`\n`} StrokeKnowHow</HeadingText>
-                        <MainText style={{textAlign: 'center', fontSize: hp('3%')}}>We are a worldwide {`\n`}<Text style={{fontSize: hp('5%'), fontWeight: 'bold'}}>stroke community</Text> {`\n`} learning from one another</MainText>
+                        <HeadingText style={{fontSize: hp('4%'), color: 'black'}}>Welcome to {`\n`} StrokeKnowHow</HeadingText>
+                        <MainText style={{textAlign: 'center', fontSize: hp('3%'), color: 'black'}}>We are a worldwide {`\n`}<Text style={{fontSize: hp('5%'), fontWeight: 'bold'}}>stroke community</Text> {`\n`} learning from one another</MainText>
                     </View>
                     <View style={stylesModal.textFieldWrapper}>
                         <TextFieldInput
@@ -302,7 +302,7 @@ class ModalLogin extends Component {
                         {this.state.inLogin &&
                         <View style={{marginTop: 0, flex:1, flexDirection: 'row', justifyContent: 'center'}}>
                         {/* {this.renderButtonOrRegister()} */}
-                            <MainText>Don't have an account?</MainText>
+                            <MainText style={{color: 'black'}}>Don't have an account?</MainText>
                             <TouchableOpacity 
                                 onPress={this.onRegisterScreenButton}>
                                 <MainText style={{color: '#b30000', fontWeight: 'bold'}}>Sign up</MainText>
@@ -312,7 +312,7 @@ class ModalLogin extends Component {
                         {!this.state.inLogin &&
                         <View style={{marginTop: 0, flex:1, flexDirection: 'row', justifyContent: 'center'}}>
                             {/* {this.renderButtonOrRegister()} */}
-                            <MainText>Already have an account?</MainText>
+                            <MainText style={{color: 'black'}}>Already have an account?</MainText>
                             <TouchableOpacity 
                                     onPress={this.goToLogin}>
                                     <MainText style={{color: '#b30000', fontWeight: 'bold'}}>Log in</MainText>

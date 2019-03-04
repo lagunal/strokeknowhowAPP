@@ -78,89 +78,7 @@ class BrainBodyScreen extends Component {
     // };  
 
     render() {
-        // if (this.props.homeScreen === 'home') { 
-        //     return (
-        //         <View style={styles.container}>
-        //           <HeadingText>Brain Body Connection</HeadingText>
-                  
-        //           <ImageContainer source={brainImage} orientation={'portrait'}/>
-                  
-        //           <MainText>
-        //           My doctor told me about research that proves after a stroke, when an area of the brain is injured, doing tasks, repeating them several times, helps healing. 
-        //                  For six months, I used both my weaker and stronger hand, washing my kitchen window, sorting laundry, polishing the table.{`\n`}
-                    
-        //           My goal was for my right hand to open and fingers to move. I kept at it, but saw no difference, {`\n`}
-        //           One morning I reached for a cup for coffee, suddenly fingers in my right hand slowly opened. I began to cry, and kept moving my fingers. 
-        //           </MainText>
-      
-        //           <PictureLegend >&mdash; Madeline, Stuttgart, Germany</PictureLegend>
-      
-        //           <MainText>
-        //               Add your tasks, use both hands, repeat them several times. 
-        //           </MainText>
-      
-        //           <MainText style={styles.bullets}>
-        //           {`\u2022`} Fold, open, re-fold items: paper napkins, clothes.
-        //           </MainText>
-      
-        //           <MainText style={styles.bullets}>
-        //           {`\u2022`} Cut/peel vegetables, fruit. Polish silverware: Wash dishes. Place cans on a shelf.
-        //           </MainText>
-      
-        //           <MainText style={styles.bullets}>
-        //           {`\u2022`} Polish silverware: Wash dishes.
-        //           </MainText>
-      
-        //           <MainText style={styles.bullets}>
-        //           {`\u2022`} Button/Unbutton shirt.
-        //           </MainText>
-      
-        //           <TouchableOpacity onPress={this.playVideo}>    
-        //               <View style={{padding: 20}}>
-        //                   <MainText><SubHeadingText style={{marginBottom: 0, fontSize: 22}}>Check VIDEO &rarr;</SubHeadingText></MainText>
-        //                   <Video
-        //                       source={{uri: "https://strokeknowhow.org/wp-content/uploads/2018/08/19_Rob_Lawyer_and_blue_grass_musician.mp4"}}
-        //                       ref={(ref) => {
-        //                           this.player = ref
-        //                       }}  
-        //                       style={{height: 300}}
-        //                       rate={1}
-        //                       paused={this.state.videoPaused}
-        //                       volume={1}
-        //                       muted={false}
-        //                       playInBackground={false}
-        //                       playWhenInactive={false}
-        //                       resizeMode='contain'
-        //                       repeat={false}
-        //                       />  
-        //               </View>
-        //           </TouchableOpacity>
-      
-        //           <HeadingText>What is Aphasia?</HeadingText>
-      
-        //           <MainText>
-        //               Aphasia is a condition that makes it difficult to say what you are thinking, or understand what is said. 
-        //               More than half of men and women after a stroke have the condition. 
-        //           </MainText>
-      
-        //           <MainText>
-        //               <Text>
-        //                   {`\u2022`} Intelligence is not affected.
-        //               </Text>    
-        //           </MainText>
-        //           <MainText style={styles.bullets}>
-        //           {`\u2022`} Relearning is ongoing: Talking, reading, writing, problem solving. 
-        //                       You keep at it, until you get back what you've lost.  
-        //           </MainText>
-      
-        //           <MainText style={styles.bullets}>
-        //           {`\u2022`} Find an Aphasia Group or a family with similar experiences. 
-        //               It can increases confidence, friendships.  
-        //           </MainText>
-            
-        //         </View>           
-        //       );
-        // }    
+ 
 
         return (
           <View style={styles.container}>
@@ -254,7 +172,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: 'black',
     },
     bullets: {
         marginVertical: 5,

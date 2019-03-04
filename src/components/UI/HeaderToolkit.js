@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     textTitle: {
-        fontSize: height > 700 ? wp('5.3%') : wp('5%')
+        fontSize: height > 700 ? wp('5.3%') : wp('5%'),
+        color: 'black'
     },
     textInstructions: {
         fontSize: wp('4%'),

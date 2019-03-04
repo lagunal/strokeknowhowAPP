@@ -21,41 +21,6 @@ class NewDayScreen extends Component {
 
 
   render() {
-    // if (this.props.homeScreen === true) { 
-    //   return (
-    //     <View style={styles.container}>
-        
-    //       <StatusBar
-    //           barStyle="light-content"
-    //       />    
-  
-    //       <ImageContainer source={require('../assets/home.png')} />  
-    //       <MainText style={{marginBottom: 0}}>    
-    //           I was a sports writer of a major newspaper,  who had a stroke in a New York subway during rush hour.  In the ambulance, 
-    //           I overheard the word ‘stroke,’ and realized they were talking about me. 
-    //           Out of the hospital in five days: I could stand, not walk.
-    //           Insurance paid for a handful of physical therapy. NOW WHAT?
-    //       </MainText>
-    //       <PictureLegend >&mdash; Mike</PictureLegend>    
-          
-    //       <HeadingText>A New Day</HeadingText>
-          
-    //       <ImageContainer source={require('../assets/newDay.png')} />
-          
-    //       <MainText style={styles.bullets}>
-    //           {`\u2022`} It’s important to get out of bed and dress every day. Complete bed rest deconditions the body. Lowers the capacity of heart’s pumping rate, reduces lung capacity, alters blood pressure, increases chance 
-    //           of pneumonia. 
-    //       </MainText>
-    //       <MainText style={styles.bullets}>  
-    //           {`\u2022`} Do slow stretches in bed to ease stiffness. Roll from side to side. 
-    //       </MainText>
-    //       <MainText style={styles.bullets}>  
-    //           {`\u2022`} Before moving take your time, avoid quick changes to avoid becoming dizzy.  
-    //       </MainText>
-  
-    //     </View>
-    //   );
-    // }
 
     return (
       <View style={styles.container}>
@@ -102,8 +67,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
-    marginTop: 10,
+    backgroundColor: 'black',
+    //marginTop: 10,
 
   },
   bullets: {

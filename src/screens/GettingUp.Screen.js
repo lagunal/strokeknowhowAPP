@@ -22,69 +22,7 @@ class GettingUpScreen extends Component {
     }
     
     render() {
-      // if (this.props.homeScreen === 'home') { 
-      //   return (
-      //     <View style={styles.container}>
-      //       <HeadingText>Kufungisisa {`\n`}
-      //       Thinking too much/depressed in Zimbabwe</HeadingText>
-
-      //       <ImageContainer source={kufungisisaImage} />
-
-      //       <MainText>
-      //       After my stroke, depression hit me hard. I am the youngest lawyer in the court, suddenly I could not see what my future held. 
-      //       </MainText>
-      //       <MainText>  
-      //       My wife continued my care until she had to return to her job for our income. Then my uncle and a neighbor came.
-      //       </MainText>
-
-      //       <MainText>
-      //       Three things that helped me: 
-      //       </MainText>
-
-      //       <MainText style={styles.bullets}>
-      //       {`\u2022`} The love of my wife and children. 
-      //       </MainText>
-
-      //       <MainText style={styles.bullets}>  
-      //       {`\u2022`} My best friend since childhood challenged me to reach for greater independence. 
-      //       </MainText>
-
-      //       <MainText style={[styles.bullets, {marginBottom: 0}]}>  
-      //       {`\u2022`} From a group of athletes with disabilities I learned an important lesson: ‘Don’t let anyone take away your role in the family, and the responsibilities you can handle.
-      //       </MainText>
-
-      //       <PictureLegend >&mdash; R.W., Zimbabwe, Africa</PictureLegend>
-
-      //       <ImageContainer source={skinImage} />
-
-      //       <MainText style={{marginBottom: 0}}>
-      //       There’s no telling who or what it will be that gives you the will and determination to go forward— 
-      //       your openness that counts. 
-      //       It could be your wife or husband, children, God, friends of many years, or people you meet with similar experiences to yours.  
-      //       </MainText>
-      //       <PictureLegend >&mdash; Bill</PictureLegend>
-
-      //       <HeadingText>Getting Up {`\n`} When Feeling Down</HeadingText>
-      //       <MainText>
-      //         Advice from people who’ve been there:
-      //       </MainText>
-
-      //       <MainText>
-      //       {`\u2022`} Stress comes from what we tell ourselves. Substitute positive ‘self-talk’ for negative ones.
-      //       </MainText>
-
-      //       <MainText>
-      //       {`\u2022`} Be around people who make you feel good about yourself.  Meet at a
-      //           stroke club and aphasia group. Look for a family touched by stroke, can make a difference.
-      //       </MainText>
-
-      //       <MainText>
-      //       {`\u2022`} Sadness, impatience, loss, love, come with one another. 
-      //           Feelings are all valid, and a reaction of what you've been through. 
-      //       </MainText>           
-      //     </View>           
-      //   );
-      // }  
+  
 
         return (
           <View style={styles.container}>
@@ -159,7 +97,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: 'black',
     },
     bullets: {
       marginVertical: 5,

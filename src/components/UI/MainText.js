@@ -12,7 +12,8 @@ const mainText = props => (
 
 const styles = StyleSheet.create({
     mainText: {
-        color: '#0d0d0d',
+        //color: '#0d0d0d',
+        color: 'white',
         fontFamily: 'Verdana',
         //fontFamily: 'Helvetica',
         //fontSize: 17,
